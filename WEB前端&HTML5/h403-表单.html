@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="name" content="content">
+	<title></title>
+</head>
+<body>
+<form action="" method="get" accept-charset="utf-8">
+	不能修改,也不提交,表示禁用:<input type="text" name="username" value="没人"  disabled="true"readonly><BR />
+	不能修改,但可以提交:<input type="text" name="username"  value="没人" readonly><BR />
+	密码框:<input type="password" name="userpasswd"> <br />
+	单选框:<input type="radio" name="sex" value="1">男 
+		<input type="radio" name="sex" value="2"> 女<br />
+	多选框:<input type="checkbox" name="hoobby" value="1">篮球
+			<input type="checkbox" name="hoobby" value="2">足球
+			<input type="checkbox" name="hoobby" value="3" checked="checked">大大球<br />
+	找片:<input type="image" src="">
+	上传文件:<input type="file" name="upload">
+
+	下拉框:
+	<select name="month" multiple="multiple">
+		<optgroup label="第一季度">
+		<option value="1">一月</option>
+		<option value="2">二月</option>
+		<option value="3">三月</option>
+		<option value="4">四月</option>
+		<option value="5">五月</option>
+		<option value="6">六月</option>
+		</optgroup>
+
+		<optgroup label="第二季度">
+		<option value="7">七月</option>
+		<option value="8">八月</option>
+		<option value="9">九月</option>
+		<option value="10">十月</option>
+		<option value="11">十一月</option>
+		<option value="12">十二月</option>
+		</optgroup>
+		...
+	</select>
+
+	<input type="submit"> 
+	下载文件:<a href="file/test.file" title="下载文件">下载文件</a>
+
+	自我介绍:<br />
+	<textarea name="zwjs" rows="18" cols="30">
+		我是默认值,哈哈哈哈哈哈哈哈
+	</textarea>
+	<input type="button" value="啦啦啦"/>
+	<input type="reset" />
+	<input type="submit" />
+	隐藏信息:<input type="hidden" name="mimi" value="mimi">
+
+	
+</form>
+</body>
+</html>

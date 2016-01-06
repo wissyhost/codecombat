@@ -1,0 +1,121 @@
+<!-- 文档类型
+	doctype 表示文档类型 HTML跟标记 PUBLIC 发布版本 
+	-//W3C//DTD HTML 4.01 Transitional//EN  发布的版本内容 
+	HTML4.01 版本 Transitional 版本类型,过渡版 文档规则地址
+	--><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN "http://www.w3.org/TR/html4/loose.dtd"">
+<html><!--  -->
+<head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title> 我的站点</title></head>
+
+<body>
+<!-- align 水平方向 left  center right
+		valign 垂直方向 top middle bottom -->
+<!-- <img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="top"> 在Top</img>
+<img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="bottom"> 在Botom</img>
+<img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="middle"> 在middle</img>
+<img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="left"> 在left</img>
+<img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="right"> 在Right</img>
+<img src="file:///root/%E5%9B%BE%E7%89%87/Jonas%20Nilsson%20Lee.jpg" width="300" height="450" alt="正在加载" align="center"> 在center</img>  -->
+<!-- hr水平线 多用于主题结束的场所
+	sizw 线的粗度
+	color 线的颜色
+	width 线的长度
+	align 线的对齐方式 -->
+<hr align="right" size="15" width="41">
+<hr size="30" color="#66ccff"  width="70%" align="center" />
+<!-- ol 有序列表 
+	type 列表符号类型 
+	start从第几个数开始
+	li表示有序列表的项  -->
+<ol type="1" start="3"><li type="I">唐僧</li> <li type="a">唐僧</li><li type="A">唐僧</li><li>唐僧</li><li>唐僧</li></ol>
+<!-- ul 无序列表 
+		type 列表图标类型 
+		ciecle 空心圆
+		disc 实心圆
+		square 方框-->
+<ul type="circle" ><li type="disc">唐僧</li> <li type="square">唐僧</li><li>唐僧</li><li>唐僧</li><li>唐僧</li></ul>
+<!-- dl 自定义列表 dt 不缩进 dd 缩进的列表项 -->
+<dl><dt>UFO</dt> <dd>不明飞行物</dd></dl>
+<dl><dt>不缩进的列表项</dt> <dd>缩进的列表</dd><dt>没有缩进的链表项</dt></dl>
+<!-- 预览标签 他会把书写的格式完全显示在页面中-->
+<hr size="20" width="50%" align="middle" color="blue"/>
+<pre>这是预
+览模式</pre>
+<!-- a 锚点 超链接标签 
+		href 属性 表示要链接到的页面,默认是当前页面 
+		content内容.表示页面中要显示的主体 
+		超链接默认是蓝色,鼠标放上去会变成小手标记,可以点击
+		name 属性 表示锚点 默认在HTML的首部
+			在href中的完整URL为"链接页面#锚点"
+			<a href="#aa.java" > 本页的超链接</a>
+			<a href="html01.html#aa.java" > 本页的超链接</a>
+			
+			-->
+<a href="http://www.baidu.com" > &gt;到百度首页</a>
+<a href="#aa.java" > 查看代码</a>
+<!--
+可以加图片
+<a href="" > <img src="" alt=""></img></a>
+-->
+
+<a name="aa.java" > </a>
+<pre>java   代码.........</pre>
+<hr />
+<!-- href属性
+		mialto:目标邮箱?cc=抄送邮箱&bcc=密送邮箱&subject=主题&body=内容 邮箱协议 -->
+<a href="mailto:1142388569@qq.com?subject=主题&body=内容&cc=抄送人@qq.com&bcc=迷抄人@qq.com"> 点我发邮件</a>
+
+<!-- 滚动
+
+-->
+<marquee scrolldelay="1" direction="down" width="80%" heigh="20px">我可以这么动</marquee>
+<marquee scrolldelay="10" direction="right" width="20%" heigh="20px">我可以这么动</marquee>
+<marquee scrolldelay="10" direction="left" width="20%" heigh="20px"> <font color="green">我可以这么动</font> </marquee>
+
+<!-- 表格 table 表示表格 表格的绘制从上到下从左到到右
+		border表示表格边框 
+		caption 表示抬头
+		tr 表示行
+		th 表示列 粗体,居中对齐
+		td 表示单元格 居左对齐 
+		colspan 跨列 默认是1
+		rowspan 跨行 默认是1
+		 -->
+ <table border="1" bgcolor="blue"> 
+<caption> 员工信息表</caption>
+<tr> <th>姓名</th> <th>性别</th></tr>
+<tr> <td>老王</td> <td>男</td></tr>
+<tr> <td>男孬</td> <td>女</td></tr>
+<tr> <td>大白</td> <td>男</td></tr>
+
+ </table> 
+ 
+ <table border="1" bgcolor="blue"> 
+<th colspan="2"> 员工信息表</th>
+<tr> <th>姓名</th> <th>性别</th></tr>
+<tr> <td>老王</td> <td>男</td></tr>
+<tr> <td>男孬</td> <td>女</td></tr>
+<tr> <td>大白</td> <td>男</td></tr>
+
+ </table> 
+ 
+  <table border="1" bgcolor="green"> 
+<th colspan="2"> 员工信息表</th>
+<tr> <th>姓名</th> <th>性别</th></tr>
+<tr> <td>老王</td> <td rowspan="3">男</td></tr>
+<tr> <td>男孬</td></tr>
+<tr> <td>大白</td></tr>
+
+ <table border="1" bgcolor="green" cellpadding="5px" cellspacing="10px" backgroud="file:///root/%E5%9B%BE%E7%89%87/Horseshoe%20Bend%20Sunset.jpg"> 
+<th colspan="2"> 员工信息表</th>
+<tr> <th>姓名</th> <th>性别</th></tr>
+<tr> <td align="right" valign="bottom">老王</td> <td rowspan="2">男</td></tr>
+<tr> <td>男孬</td> </tr>
+<tr> <td>大白</td><td rowspan="2">女</td></tr>
+<tr> <td>大白</td></tr>
+
+ </table>
+
+
+</body>
+
+</html>

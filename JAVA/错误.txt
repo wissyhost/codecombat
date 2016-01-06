@@ -1,0 +1,31 @@
+1.BufferRead 独到文件尾 返回 null
+2.tcp中用过滤流不要用字节流
+3.在网络中发送软件造成的网络异常多半是获取Socket.getInputStream和Socket.getOutputStream不同步
+    即客户端获取输入流,服务器获取输出流,等流,都要同步
+
+setSendAddress      发送方
+setServerAddress     接受方
+3. cmd,      value1,        value2,    value3,    alue4,  serverAddress,  sendAddress 附加 number
+   check? Countent的md5值    User的md5值 null       null        ------------------------    0
+   update    文件名            md5值      文件名     md5值    发送方地址    要发送的地址     服务器返回要更新的文件数
+   login?       用户名         密码          null    null        -----------------------     0
+   login        BOOlean         User        ArrayList(Friend)
+   register?    User
+   register     boolean;
+   noLogin(注销)  注销方ID
+(message)存入本地消息文件 发送方ID  发送方消息  时间  未读?(true未读)
+
+用户离线写入的是数据库  ArrayList<Content> COntent=message?类型
+   message(接收消息)发送方UserID        接受方UserID       消息                                                                                      服务器发送给客户端的头
+   message?         发送方UserID        接受方UserID       消息                                                                                                  客户端发送给服务器
+
+数据库
+    user_omessage   Arraylist<Content>
+
+当客户端调用Client.clent2是返回的是map集合
+        key       value
+        login?      Boolean(是否登陆成功)
+        user        User 用户个人信息
+        myFriend    Map<String,Integer>用户好友集合 UserID    Useranme:UserStatus
+        message.content   -->ArrayList<Content>
+        myFriend.map                    HashMap<Integer, String>

@@ -1,0 +1,376 @@
+<meta charset="utf-8">
+<!-- lang=Java -->
+
+# JAVA中级笔记
+###### 作者:王永生
+
+---
+
+####复习
+1. #### 什么是软件
+
+	1. IEEE里面，软件=程序+数据+文档
+	2. 在ISO9000认证体系中，文档是数据的一部分
+	3. 文档：用户提供的数据
+	4. 数据：系统数据(1.受保护的信息,2.关键数据)...由变量组成,一般用到封装
+	5. 程序：实现用户功能的代码软件=程序+数据+文档
+	7. 视图:用户交互问题(1.显示信息 2.收集客户信息)
+	8. 服务:连接视图和数据部分(1.通过视图操作数据)
+	<br>**提示.一般是由上往下写好写,即在后期数据部分变化不是很大,基本数据类型放数据..引用数据类型放的是地址,即一个地址指向堆,在堆里面放着数据..数组也是引用数据,不一样的是数组是一组类型相同的数据.对象模型相当于是一个二维数组**
+
+
+####基本语法
+2. ##### 多态对象
+	* 子类地址给父类对象赋值。 如： 父 多态对象=new 子（）；
+	* 多态对象能访问父类的独有成员，以及子类覆盖了父类的方法
+	* 属性不存在覆盖，该是谁的就是谁的
+	* 多态对象模型
+
+3. ##### abstract:抽象的
+	* 能修饰类、方法
+	* 修饰类，类变成抽象类，修饰方法，方法没有方法体，变成抽象方法
+	* 抽象类不能自己实例化自己，只能通过子类实例化，所以说抽象类对象都是多态对象。
+	* 含有抽象方法的类一定是抽象类，但是抽象类不一定含有抽象方法
+	* 如果子类没有覆盖父类的抽象方法，那么这个子类一定也是抽象类
+	* abstract 和final 是一对相反的修饰符，不能同时使用
+
+4. ##### 接口
+	* **interface跟class一个级别 ！！接口没有构造器**
+	* **接口定义，用`interface`，用`implements`继承接口**
+	* 一个类实现某个接口，那么这个类必须实现这个接口的抽象方法，否则这个类就为抽象类
+	* 一个类实现某个接口，这个接口称之为父接口，这个类称之为这个接口的实现类，
+	* 一个子类可以继承一个父类，可以实现多个接口，多个接口之间用逗号分割，模拟多继承
+	* **接口之间是多继承的**
+	* 接口里面有属性和方法，属性默认都是`public static final `修饰的.方法默认都是`public abstract` 修饰的
+	* 接口也不能实例化自己，要用实现类实例化接口，所以所有的接口对象都是多态对象
+	* 好处：
+		1. 模拟多继承，为子类提供更多的类型。
+		2. 只有声名没有实现；使多个组织之间合作开发一个项目成为可能
+
+5. ##### 接口与抽象类的区别
+	Serializable//网络传输和文件传输，，序列化的意思
+	1. 接口用interface抽象类是用abstract修饰的class
+	2. 抽象类是单继承，接口是多继承
+	3. 一个类可以继承一个抽象类，可以实现多个接口
+	4. 子类与抽象类之间是“是”的关系，实现类与接口之间是“具有“的关系
+	5. 抽象类中既可以有抽象方法，也可以没有抽象方法。接口里面的方法都是public abstract 修饰的方法，而且这些修饰符可以省略
+	6. 抽象类里面的属性都是public static final修饰的常亮，修饰符可以省略，抽象类没有要求
+	7. 抽象类有构造器，接口没有
+6. ##### 内部类
+	* 分类:
+		* 实例内部类
+			1. 在外部类里面,方法的外面,没有static修饰的内部类
+			2. 实例内部类想当于类中的实例成员
+			3. 内部类中只能写实例的成员(属性和方法),不能有静态成员
+			4. 在内部类中可以访问外部类所以的成员
+			5. 在内部类中this表示的是内部类的当前对象外部类.this.表示当前类的外部类的当前对象
+			6. 在外部类中不能直接访问内部类的成员要通过内部类的对象,通过对象去访问
+			7. 在实例方法或者类中可以直接定义并初始化 在静态方法(main方法)中首先创建一个外部类的对象,由外部类创建内部类对象 如:外部类.内部类
+	  		`对象名=外部类.new 内部类();`
+		* 静态内部类
+			1. 在外部类里面,方法的外面有static修饰的的内部类
+			2. 相当于静态成员
+			3. 内部类中可以有属性和方法(静态和非静态的)
+			4. 在外部类中只能访问外部类的静态成员
+			5. 在内部类中不能访问外部类的this对象(因为那时候this还没有被加载出来)
+			6. 在外部类中,可以之间创建内部类随心
+			7. 在其他类中.可以用内部类的全称创建
+			 ` 外部类.内部类 对象=new 外部类.内部类();`
+		* 局部内部类\(静态方法,和非静态的实例方法\)
+			1.在方法里面定义的内部类:
+        	 **&#160;&#160;在实例方法里面定义的内部类,叫实例级别内部类,匿名**
+        	 **&#160;&#160;在静态方法里面定义的内部类.叫静态级别内部类**
+			2.局部内部类相当于类中的
+            3.局部内部类,只能在方法内使用,方法外面不能使用
+            4.局部内部类只能先定义,再使用
+            5.局部内部类只能包含实例成员(属性,方法) 不能包含静态的成员
+            6.在局部内部类中,可以访问外部类的全部成员(静态和非静态)
+	  	> 	在静态级别局部内部类中,可以访问外部类的静态成员 可以访问方法里面final修饰的常量 !!从jdk1.8以后没有了只能访问final的限制
+
+		* 匿名内部类
+	 	1. 只能通过父类创建子类,new 父类(){};
+	 	2. 没有构造器
+	 	3. 结束符有};构成
+	 	4. 不能是final修饰的类,可以是抽象类和接口
+7. ##### java内存
+	* 栈区
+	  **放局部变量**
+	  1. 存活周期短，超出范围就失效
+	  2. 变量使用前，必须初始化
+	  3. 不能用public、protected、private、static修饰
+	* 堆区
+		**放属性**
+    	1. 可以用public、protected、private、static修饰
+    	2. 通过new 开辟空间，有地址
+    	3. 属性有默认值，数字默认为0，boolean默认为false，char默认为‘\u0000’.所有的引用数据类型，默认都是null。
+    	4. 垃圾回收的区域
+    * 方法区
+		**放静态属性、静态方法、实例方法、构造器**
+		1. 存活周期最长，类加载时创建，虚拟机退出时销毁
+		2. 属性有默认值，默认值同上
+		3. 可以有`public`、`protected`、`private`、`static`修饰
+	* 常量池
+	   **放final修饰的变量，和String常量**
+	   1. 相同内容放在一个空间内，也就是相同内容具有相同的地址
+	   2. 虚拟机退出时销毁
+8. ##### 垃圾收集(GC机制)
+	**虚拟机中的一个后台线程，不受程序员控制，受虚拟机控制，当程序中业务线程执行时，不执行垃圾收集线程，当业务线程停止时，可以执行垃圾回收**
+	1. `finallize()`，Object类的方法，当垃圾回收机制回收垃圾对象时，会调用所有垃圾对象的finallize()方法，对垃圾对象的finallize方法调用，会递归到Object类的`finallize方法`
+	2. gc(),有两种方法调用gc(),一种是`System.gc();`一种是`Runtime.gegRuntime().gc()`;
+	3. 调用gc() 方法不会立刻进行垃圾回收，垃圾回收受虚拟机控制。
+9. #####可变参数
+	1. 在一个方法中最多有一个，而且只能放在最后,在实参上个数不确定
+	2. 本质上就是相应类型的数组
+10. #####枚举类：
+   1. 是一个特殊的类，它的实例是常量。
+   2. 所有的枚举都是继承自Enum类,values(),ordinal()
+   3. 枚举类实例是固定，
+   &#160;**默认都是public static final，**
+   &#160;**只能放在枚举类中第一行，最后一个“；”可以省略**
+   4. 枚举类默认是final的
+   5. 枚举类可以有静态成员和非静态成员（属性、方法）
+   6. 枚举类可以有构造器，构造器默认是私有的（private） ，
+   	**调用在枚举类的实例,在实例后面用（实参）调用**
+   7. 枚举类中可以有抽象方法，抽象方法的实现在具体实例后面，以匿名类的形式实现
+   8. 枚举类不能继承其他类，但是可以实现接口,实现方式同上
+   9. 不能用new 创建对象
+
+11. ##### 简单工厂模式：
+  	1. 有一个接口
+  	2. 实体类实现这个接口
+  	3. 在业务类中定义一个工厂方法，
+  		参数是String（放的是类的信息），返回对应实体类对象
+12. ##### instanceof 关系运算符（20行）
+	 1. 语法：对象 instanceof 类
+	 2. 要求：对象和类具有内在联系
+13. ##### String
+	**字符串常量**
+   	* 构造器：String(String)
+   	* 方法：
+
+   	| concat() | replace()|substring()|toLowerCase()|toUpperCase()|trim()|toString()|
+	|--------|--------|--------|--------|--------|------|--------|
+	|连接字符串  |替换字符串  |剪切一个子字符串|转换为小写   |转换为大写     |忽略前导空白和尾部空白|默认控制台输出|
+    | indexOf | lastIndexOf |endsWith()|startsWith()|equals()|splilt()|equalsIgnoreCase()|
+	|返回第一次出现此字符串的索引  |返回最后一次出现此字符串的索引  | 测试此字符串的后缀| 测试是否以此字符串开头|比较|按照字符串切字符串|忽略大小写|
+    | compareTo | compareToIgnoreCase |charAt|length|
+	|按字典顺序比较|按字典顺序比较,忽略大小写|返回索引处的字符|返回字符串的长度
+14. ##### StringBuffer
+   	**带缓冲区的字符串变量，线程安全**
+    1. 构造器：StringBuffer(String initialString)
+    2. 方法：append, insert, reverse, setCharAt，
+    3. 与String 转换
+		* String到StringBuffer  用构造器
+		* StringBuffer 到String 用toString
+15. ##### StringBuilder
+   	**带缓冲的字符串变量，线程不安全，速度最快**
+	用法同 StringBuffer
+16. ##### \=\= 和equals区别
+	* ==对于对象，比较的是地址，对于基本数据类型，比较的是内容
+	* equals 比较对象，如果是字符串，比较的是内容，如果是Object类 比较的是地址
+17. ##### 集合（Collection）
+  	**用途，与数组类似，也是用于数据模型，组装数据，多用于组装对象，形成对象集合**
+	* Collection 接口 ，下面两个子接口（List，Set），
+		* List下面两个实现类（ArrayList，LinkedList），
+		* Set下面两个实现类（HashSet，TreeSet）
+	* Collection有个父接口Iterable ，可以获得当前集合的Iterator（迭代器）
+	* Collection 接口方法add：给集合填元素，Iterator方法:获得当前集合的迭代器
+	* Iterator接口有两个方法，hasNext：判断是不是集合到底了，next：移动指针，
+		获得下一个集合元素，通常这两个方法结合使用。
+18. ##### Map:映射类(key,value)
+	1. 一组数据分两个,一个是键(key)不能重复,一个是内容(value)可以重复
+	1. Map是接口,Map常见两个实现类:HashMap,TreeMap
+		* Key是HashSet类型的为HashMap
+		* Key是TreeMap类型的为TreeMap
+	1. Map属于数据层, 一行放两个,key为键的类型,value为映射值类型
+	1. key属于Set集合类型,特点不重复
+	  	###### 实现方法:
+        	put表示往map里面放一组数据
+	  		get(Object key) //用key取value的值
+
+19. ##### HashMap与HashTable
+ 	1. HashMap不安全,但效率快,key可为null
+ 	2. HashTable安全,但效率低,key不为null
+ 	**泛型:通常用在集合中用<>表示**
+20. ##### 泛型:表示作者写程序的时候并不知道是什么类型,
+ 	 * 在具体用时定以起类型 一般用"<>"来表示多个用","分割
+ 	 * 多用于集合中,可以写引用数据类型
+ 		 	Map<Integer> intMap= new Map<Integer>();//表示定以一个整形的映射类型
+21. ##### 泛型:广泛的类型,类似于C++中的的模板,从jdk1.5开始
+ 	1. 应用于类,在类的右面用<E>表示,E就是泛型,在类定义时不确定类型,在类创建时,指定类型
+  	2. 应用于集合,在集合类型后面用<E>表示,E就是集合元素类型,
+  	3. 应用于Map,在Map右面用<E,F>表示,E就是key的类型,F代表value的类型
+  	4. 应用于集合,方法参数.
+	* 通配符:
+  			?表示所有类型
+  			? extends B 表示B类与B类的子类
+  			? super B 表示B类与B类的父类
+  	######泛型好处:
+  		1. 重要性,类似于模板,提高代码重用
+  		2. 安全性.提供集合的安全类型检查
+22. ##### Throwable:可抛出的类
+	**有两个子类:Error ,Exception**
+    * Error:错误
+		1. Error一旦发生,系统一定会退出,Exception一旦发生可以处理
+		1. 程序员主要关注Exception,对Error无能为力
+	* Exception:异常
+	  ######分类:RuntimeException运行时异常CheckException检查异常
+	  1. 运行时异常可以不显示的写try,catch检查异常必须写try,catch
+	  2. 检查异常发生在编译期,运行异常发生在解析执行期
+	  * RuntimeException:
+	 		//运行异常
+	 	 	ArithmeticException
+		  	ClassCastException
+		  	IllegalAccessException
+		  	IndexOutOfBoundsException
+		   	NullPointerException
+	   		//检查异常
+	  		类没找到异常,IOException文件输入输出异常,没有这个方法异常NoSuchMethodException,
+	  		数据库异常sqlException,
+	  * 异常抛出:
+	  	1. JAVA程序在运行过程中,发现异常,会产生一个异常对象
+	  	1. 把这个对象抛出给JAVA的运行时系统,这个过程称之为异常抛出
+	  * 异常捕获:
+	  	1. 抛出的异常,JAVA运行时系统对其捕获,接收.如果接收到这个异常
+	  	1. 就称之为异常捕获到.如果没有捕获到.系统就停止运行
+	  	1. 运行时抛出的异常给catch块的参数赋值
+	  	1. 多catch块,如果异常具有父子类关系时,则子类放在上面,父类放下面
+	  * 异常处理:
+	  	1. 对于捕获到的异常.进行处理.称之为异常处理
+	  		**finally:无论代码块有没有异常,它都会执行**
+23. ##### `final,finally,finalize`的区别
+	1. final是修饰符,表示最终的,可以修饰类,方法,变量
+		* 修饰类,表示类没有子类,修饰方法.表示方法不能被覆盖
+		* 修饰变量,变量变常量
+	2. finally,表示异常处理的最后一个快,无论try产生不产生异常都会被执行
+	3. finalize,是Object类的方法,表示对象垃圾回收方法
+24. ##### 自定义异常
+	**throws:**
+	 1. 写在方法声明中,在参数后面,在方法体前面
+	 2. throws 后接异常类型,多个异常用","号隔开
+	 3. 方法抛出异常后,这个异常叫由调用者进行处理
+	**如果方法的调用者,不处理,可以继续往外抛异常,直到代码处理为止,否则程序退出**
+25. ##### throw和throws的区别
+	 * throw后面接异常对象,而且只能接一个对象
+	 * throws后面接的是异常类型,可以是多个类型,多个类型之间用","号分割
+	 * throws 在方法体内进行书写,表示手动抛出异常.throes在方法申明处填写,表示方法需要捕获到的异常类型
+26. ##### 注解:
+	**定义数据的数据叫做元数据**
+	**注解对元数据的注释.需要编译器检查**
+	1.系统提供的注解有
+	```Java
+	  		@Override:方法重写
+	  		@Deprecated:不建议使用
+	  		@Supppresscated:压制警告
+	  		@Document:注解的文档注释
+	  	注解对元数据进行注释 (元数据:方法,属性,类 )
+     ```
+27. ##### 元注解: 给注解的注解(一般表示注解的范围,作用域,是否可以继承等)
+	自定义注解:一般用于反射
+
+    ```Java
+    	注解的注解-->元注解
+		Retention:   表示注解影响范围
+		RetentionPolicy.RUNTIME  :运行时级别
+		RetentionPolicy.SOURCE   :源代码级别
+		RetentionPolicy.CLASS    :类级别
+		Target					:目标,可以注解在那些地方
+		Documented				:注解文档
+		Inherited				:注解支持子类继承
+		--->Target
+		ElementType.METHOD		:方法
+		ElementType.FIELD		:属性
+		ElementType.CONSTRUCTOR	:构造器
+		ElementType.PARAMETER	:方法参数
+		ElementType.LOCAL_VARIABLE:局部变量
+    	ElementType.PACKAGE		:包
+		ElementType.TYPE		:类或接口
+    ```
+	|元素类型:		|		方法		|		属性			|			构造器			|		方法参数		|			局部变量		|			包			|	类或接口|
+	|--------|--------|--------|--------|--------|--------|--------|--------|
+	|value=|ElementType.METHOD|ElementType.FIELD|ElementType.CONSTRUCTOR|ElementType.PARAMETER|ElementType.LOCAL_VARIABLE|ElementType.PACKAGE|ElementType.TYPE|
+
+	```Java
+		@Retention(RetentionPolicy.CLASS)
+		//	元素类型				方法				属性						构造器					方法参数					局部变量					包				类或接口
+		@Target(value={ElementType.METHOD,ElementType.FIELD,ElementType.CONSTRUCTOR,ElementType.PARAMETER,ElementType.LOCAL_VARIABLE,ElementType.PACKAGE,ElementType.TYPE})
+		//@Documented
+		//@Inherited
+	```
+
+23. ##### IO
+    * **数据流:**
+		1. 有方向(单向)
+		2. 根据方法分为输入流和输出流
+		3. 有流里的数据类型
+		4. 根据这个类型分为字节流和字符流
+    * 字节输入流:
+            父类:InputStream
+            子类:FileInputStream
+        ###### 方法:
+            available()     :还能读多少Byte
+            close()         :关闭流
+            read(byte[])    :读流,读到底返回-1
+            read(byte[] ,int ,int)  :读流
+    * 字节输出流:
+         父类:OutputStream
+            子类:FileOutputStream
+            构造器:名字,是否追加ture追加false创建新的(可以省略)
+         ###### 方法:
+                close()                    :关闭流
+                write(byte[])              :写流
+                write(byte[] ,int ,int)    :写流
+                flash();                   :刷新缓存区的数据到文件
+
+
+23. ##### 正则表达式
+
+	```Java
+			正则表达式：
+		验证字符串是不是符合指定的格式
+      * 	：零到任意多个字符
+      . 	: 一个任意字符
+      {n}	 ：n个字符
+      ^ 	:表示以什么字符开始
+      $ 	：表示以什么字符结束
+ 	字符类型：
+ 		[abc] 		a、b 或 c（简单类）
+		[^abc] 		任何字符，除了 a、b 或 c（否定）
+		[a-zA-Z] 	a 到 z 或 A 到 Z，两头的字母包括在内（范围）
+		[a-d[m-p]] 	a 到 d 或 m 到 p：[a-dm-p]（并集）
+		[a-z&&[def]] d、e 或 f（交集）
+		[a-z&&[^bc]] a 到 z，除了 b 和 c：[ad-z]（减去）
+		[a-z&&[^m-p]] a 到 z，而非 m 到 p：[a-lq-z]（减去）
+		. 			任何字符（与行结束符可能匹配也可能不匹配）
+		\d 			数字：[0-9]
+		\D 			非数字： [^0-9]
+		\s 			空白字符：[ \t\n\x0B\f\r]
+		\S 			非空白字符：[^\s]
+		\w 			单词字符：[a-zA-Z_0-9]
+		\W 			非单词字符：[^\w]
+		一般用于Pattern
+		Pattern pa= Pattern.compile("a*b");//表示0到任意多的a和一个b
+		Matcher m=pa.matcher("aaaaaaaaaaaaaab");//true
+		Matcher m1=pa.matcher("a11b");//false
+		System.out.println(m.matches()+"\t"+m1.matches());
+		System.out.println(Pattern.matches("a*b", "aaaab"));
+       ```
+#### 附注
+1. 属性文件: Properties!! 属性类
+       **是HashTable的子类继承了他的特征和成员**
+	* Properti类的key和value是String类型,
+	* 具有自己的方法.常见的有
+	```Java
+	setproperties(String key.String value)
+	getproperties(String key)
+	load(InputStream)             //把属性文件的数据加载到properties中
+	store(OutputStream,String)     //把数据存储到文件中
+    ```
+
+    ###### **多应用于项目的配置,页面信息,错误信息,数据库信息 .数据库语句等场合中**
+
+31. 国际化
+```Java
+       ResourceBundle resourceBundle=ResourceBundle.getBundle("account", Locale.CHINA); //设置本地语言
+       System.out.println(resourceBundle.getString("username"));					//获取对应的value
+```

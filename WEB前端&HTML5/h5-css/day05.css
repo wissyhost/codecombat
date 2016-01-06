@@ -1,0 +1,56 @@
+@charset="utf-8"
+/* 这是注释*/
+
+/* 选择器*/
+p {
+	font-style: italic; /* 斜体*/
+	font-size: 28;
+	font-family: "宋体";
+}
+.lal{
+	font-style: italic; /* 斜体*/
+	font-size: 28;
+	font-family: "宋体";
+}
+.content{
+	font-size: 28px;
+	color: blue;
+}
+ul{
+	list-style-type: none;
+}
+ul li{
+	display: inline-table;
+}
+body{
+	background-image: url(/root/图片/164.jpg);
+	background-repeat: repeat-y;
+}
+table {
+	margin-left: 10px;
+	margin-top: 30px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+.table{
+	margin:45px;
+	/*background-color: yellow;*/
+	border: 20px double  yellow;
+	border-style: dashed; 
+	border-style: outset;
+	padding: 60px;
+}
+a:link{
+	color:#F00;
+}
+
+a:visited{
+	color:#FFF;
+}
+a:hover{
+	color:yellow;
+}
+a:active{
+	background-color:blue;
+}
+

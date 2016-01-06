@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>NetentSec Content Filter - Access Denied</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+<br>涉嫌访问不健康链接，连续访问10次以上经核查，屏蔽该教室外网！且不予以恢复！
+<br>
+<span style="font-size:11px">如需访问   请点击 <a>
+    <font color=#003a9d><u><a href="http://www.beicai.com/"><b>点这里继续访问</b></a></u></font></a>
+</span>
+</span>
+<br><br>
+<input id="submitButton" type="button" value="我访问的网站不是该分类，我要反馈给管理员" onclick="urlFeedback();"/>
+<iframe style="display:none;" id="iframeProxy"></iframe>
+<script>
+    function urlFeedback() {
+        if (window.confirm("您确定所访问的URL分类有错误并反馈给管理员吗？")) {
+            var device_ip = document.getElementById("device_ip").innerHTML;
+            var url = "http://www.58shangdao.com";
+            var userip = document.getElementById("userip").value;
+            var urladdr = document.getElementById("urladdr").value;
+            urladdr = encodeURI(urladdr);
+            var urlcate = document.getElementById("urlcate").value;
+            urlcate = encodeURI(urlcate);
+            var param = "?userip=" + userip + "&urlcate=" + urlcate + "&urladdr=" + urladdr;
+
+            document.getElementById("submitButton").value = "您的意见已提交管理员，感谢反馈！";
+
+            document.getElementById("submitButton").disabled = true;
+
+            setCookie();
+
+            document.getElementById("iframeProxy").src = url + param;
+
+            var proxy = document.getElementById("iframeProxy").contentWindow;
+            proxy.sendRequest('GET', url + param);
+        }
+    }
+    function setCookie() {
+
+        var Days = 1;
+
+        var exp = new Date();
+
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+
+        document.cookie = "submited=true;expires=" + exp.toGMTString();
+
+    }
+
+
+    function getCookie() {
+
+        var arr, reg = new RegExp("(^| )" + "submited" + "=([^;]*)(;|$)");
+
+        if (arr = document.cookie.match(reg))
+
+            return (arr[2]);
+
+        else
+
+            return false;
+
+    }
+
+    if (getCookie()) {
+
+        document.getElementById("submitButton").disabled = true;
+
+        document.getElementById("submitButton").value = "您的意见已提交管理员，感谢反馈！";
+
+    }
+
+</script>
+
+<!--获取反馈用户相关信息-->
+
+<input id="userip" value="192.168.200.92" style="display:none;">
+
+<input id="urladdr" value="wenwen.sogou.com/wapi/ajax/bash_games?uins=&lightframework=on&t=1450339071107"
+       style="display:none;">
+
+<input id="urlcate" value="其他生活查询" style="display:none;">
+
+</body>
+
+</html>

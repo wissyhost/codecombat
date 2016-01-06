@@ -1,0 +1,153 @@
+按照流是否直接与特定的地方(如磁盘、内存、设备等)相连，分为节点流和处理流两类。
+
+　　节点流：可以从或向一个特定的地方（节点）读写数据。如FileReader
+
+　　处理流：是对一个已存在的流的连接和封装，通过所封装的流的功能调用实现数据读写。如BufferedReader。处理流的构造方法总是要带一个其他的流对象做参数。一个流对象经过其他流的多次包装，称为流的链接。
+
+　　常用的节点流
+
+　　父　类    InputStream             OutputStream              Reader               Writer
+
+　　文　件   *FileInputStream       FileOutputStrean         FileReader         FileWriter 文件进行处理的节点流
+
+　　数　组   *ByteArrayInputStream      ByteArrayOutputStream      CharArrayReader    CharArrayWriter       对数组进行处理的节点流（对应的不再是文件，而是内存中的一个数组）
+
+　　字符串   *无　               无        StringWrittringReader   Ser       对字符串进行处理的节点流
+
+　　管　道   *PipedInputStream        PipedOutputStream   PipedReader   PipedWriter 对管道进行处理的节点流
+
+　　常用处理流（关闭处理流使用关闭里面的节点流）
+
+　　父　类     InputStream                     OutputStream                       Reader                               Writer
+
+　　缓冲流    *BufferedImputStrean BufferedOutputStream         BufferedReader                BufferedWriter    ----需要父类作为参数构造，增加缓冲功能，避免频繁读写硬盘，可以初始化缓冲数据的大小，由于带了缓冲功能，所以就写数据的时候需要使用flush方法咯
+
+　　转换流    *InputStreamReader          OutputStreamWriter- 要inputStream或OutputStream作为参数，实现从字节流到字符流的转换
+
+　　数据流    *DataInputStream            DataOutputStream    -提供将基础数据类型写入到文件中，或者读取出来，为什么要有这个流呢？看这样的分析，如果没有这种流的话，有一个long，本身只占8个字节，如果我要写入到文件，需要转成字符串，然后在转成字符数组，那空间会占用很多，但是有了这种流之后就很方便了，直接将这8个字节写到文件就完了。。是不是既节约了内存空间有让程序写起来更加方便简单了呐。写倒是很简单，但是读取的时候就注意了，根据读取的数据类型，指针会往下移，所以你写的顺序必须要和读的顺序一致才能完成你正确的需求。
+
+　　*ObjectInputStream          ObjectOutputStream
+
+　　*顺便研究序列化---将对象所在的类型全部转换成二进制，然后写入到介质中去
+
+　　*transient关键字--修饰成员变量，不写入该成员变量
+
+　　*Serializable接口--表示接口，怎样实现的呢，在序列化之前，首先判断 （对象 instanceof Serializable）如果返回true则执行序列化，否者抛出异常，并且里面有一个ID，是用来快速查找某个对象的时候使用的
+
+　　*Externalizable接口--外部化接口；他是Serializable接口的子接口，能手动控制序列化的方式
+
+　　为什么要用writeUTF()--因为这种方式是按照utf-8来写入的，而默认方式是utf-16只是节省空间而已
+
+　　--字节流读取中文的问题
+
+　　*由于java使用的是unicode编码，每一个中文字符是占用两个字节的，所以没有只读出其中一个字节并使用的话当然是乱码咯，虽然普通的英文字符也是两个字节的，但是读取的时候将高8位去掉也能回去正确的英文字符，所以没有问题，所以最好还是使用字符流的方式读取好点
+
+　　--java.io中专门提供用于打印的流(这类流在写入的时候有自动flush的功能，所以你不需要每打印一个东西都flush一次)--------注意他们也是属于处理流，只不过这里单独列出来分析而已
+
+　　*PrintStream--继承自-->FilterOutputStream--继承自-->OutputStream，（它的构造函数需要OutputStream对象）
+
+　　*PrintWriter---继承自-->Writer(它的构造函数需要Writer对象)
+
+　　System.In====InputStream
+
+　　System.Out===PrintStream
+
+　　这种流的print方法不会抛出异常，这是JSP技术中常用的流，如果在JSP页面的打印会抛出异常的话，那JSP也太难写了点！注意理解这样的设计思路
+
+　　--看这样的代码
+
+　　PrintStream ps=new PrintStream(new OutputStream("c://..."));
+
+　　System.setOut(ps);
+
+　　System.Out.println("jfdajsflkajdf");//这样将不会在打印到命令行窗口，而是指定的PrintStream目标文件里面去
+------------------------------------------------>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+最近在看《Hadoop:The Definitive Guide》，对其分布式文件系统HDFS的Streaming data access不能理解。基于流的数据读写，太抽象了，什么叫基于流，什么是流？Hadoop是Java语言写的，所以想理解好Hadoop的Streaming Data Access，还得从Java流机制入手。流机制也是JAVA及C++中的一个重要的机制，通过流使我们能够自由地操作包括文件，内存，IO设备等等中的数据。
+首先，流是什么？
+
+流是个抽象的概念，是对输入输出设备的抽象，Java程序中，对于数据的输入/输出操作都是以“流”的方式进行。设备可以是文件，网络，内存等。
+
+流具有方向性，至于是输入流还是输出流则是一个相对的概念，一般以程序为参考，如果数据的流向是程序至设备，我们成为输出流，反之我们称为输入流。
+
+可以将流想象成一个“水流管道”，水流就在这管道中形成了，自然就出现了方向的概念。
+
+当程序需要从某个数据源读入数据的时候，就会开启一个输入流，数据源可以是文件、内存或网络等等。相反地，需要写出数据到某个数据源目的地的时候，也会开启一个输出流，这个数据源目的地也可以是文件、内存或网络等等。
+流有哪些分类？
+
+可以从不同的角度对流进行分类：
+
+1. 处理的数据单位不同，可分为：字符流，字节流
+
+2.数据流方向不同，可分为：输入流，输出流
+
+3.功能不同，可分为：节点流，处理流
+
+1. 和 2. 都比较好理解，对于根据功能分类的，可以这么理解：
+
+节点流：节点流从一个特定的数据源读写数据。即节点流是直接操作文件，网络等的流，例如FileInputStream和FileOutputStream，他们直接从文件中读取或往文件中写入字节流。
+
+处理流：“连接”在已存在的流（节点流或处理流）之上通过对数据的处理为程序提供更为强大的读写功能。过滤流是使用一个已经存在的输入流或输出流连接创建的，过滤流就是对节点流进行一系列的包装。例如BufferedInputStream和BufferedOutputStream，使用已经存在的节点流来构造，提供带缓冲的读写，提高了读写的效率，以及DataInputStream和DataOutputStream，使用已经存在的节点流来构造，提供了读写Java中的基本数据类型的功能。他们都属于过滤流。
+
+举个简单的例子：
+public static void main(String[] args) throws IOException {
+        // 节点流FileOutputStream直接以A.txt作为数据源操作
+        FileOutputStream fileOutputStream = new FileOutputStream("A.txt");
+        // 过滤流BufferedOutputStream进一步装饰节点流，提供缓冲写
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
+                fileOutputStream);
+        // 过滤流DataOutputStream进一步装饰过滤流，使其提供基本数据类型的写
+        DataOutputStream out = new DataOutputStream(bufferedOutputStream);
+        out.writeInt(3);
+        out.writeBoolean(true);
+        out.flush();
+        out.close();
+        // 此处输入节点流，过滤流正好跟上边输出对应，读者可举一反三
+        DataInputStream in = new DataInputStream(new BufferedInputStream(
+                new FileInputStream("A.txt")));
+        System.out.println(in.readInt());
+        System.out.println(in.readBoolean());
+        in.close();
+}
+按 Ctrl+C 复制代码
+按 Ctrl+C 复制代码
+流结构介绍：
+
+Java所有的流类位于java.io包中，都分别继承字以下四种抽象流类型。
+  	字节流 	字符流
+输入流 	InputStream 	Reader
+输出流 	OutputStream 	Writer
+
+1.继承自InputStream/OutputStream的流都是用于向程序中输入/输出数据，且数据的单位都是字节(byte=8bit)，如图，深色的为节点流，浅色的为处理流。
+
+
+
+2.继承自Reader/Writer的流都是用于向程序中输入/输出数据，且数据的单位都是字符(2byte=16bit)，如图，深色的为节点流，浅色的为处理流。
+
+常见流类介绍：
+
+节点流类型常见的有：
+
+对文件操作的字符流有FileReader/FileWriter，字节流有FileInputStream/FileOutputStream。
+
+处理流类型常见的有：
+
+缓冲流：缓冲流要“套接”在相应的节点流之上，对读写的数据提供了缓冲的功能，提高了读写效率，同事增加了一些新的方法。
+
+　　字节缓冲流有BufferedInputStream/BufferedOutputStream，字符缓冲流有BufferedReader/BufferedWriter，字符缓冲流分别提供了读取和写入一行的方法ReadLine和NewLine方法。
+
+　　对于输出地缓冲流，写出的数据，会先写入到内存中，再使用flush方法将内存中的数据刷到硬盘。所以，在使用字符缓冲流的时候，一定要先flush，然后再close，避免数据丢失。
+
+转换流：用于字节数据到字符数据之间的转换。
+
+　　仅有字符流InputStreamReader/OutputStreamWriter。其中，InputStreamReader需要与InputStream“套接”，OutputStreamWriter需要与OutputStream“套接”。
+
+数据流：提供了读写Java中的基本数据类型的功能。
+
+　　DataInputStream和DataOutputStream分别继承自InputStream和OutputStream，需要“套接”在InputStream和OutputStream类型的节点流之上。
+
+对象流：用于直接将对象写入写出。
+
+　　流类有ObjectInputStream和ObjectOutputStream，本身这两个方法没什么，但是其要写出的对象有要求，该对象必须实现Serializable接口，来声明其是可以序列化的。否则，不能用对象流读写。
+
+　　还有一个关键字比较重要，transient，由于修饰实现了Serializable接口的类内的属性，被该修饰符修饰的属性，在以对象流的方式输出的时候，该字段会被忽略。
+

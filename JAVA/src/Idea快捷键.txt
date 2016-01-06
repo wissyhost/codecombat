@@ -1,0 +1,186 @@
+IntelliJ IDEA使用技巧一览表
+分类： Ajax Tools 2012-02-23 13:17 110人阅读 评论(0) 收藏 举报
+
+
+在使用InelliJ IDEA的过程中，通过查找资料以及一些自己的摸索，发现这个众多Java程序员喜欢的IDE里有许多值得一提的小窍门，如果能熟练的将它们应用于实际开发过程中，相信它会大大节省你的开发时间，而且随之而来的还会有那么一点点成就感：）Try it！
+1、写代码时用Alt-Insert（Code|Generate…）可以创建类里面任何字段的getter与setter方法。
+
+2、右键点击断点标记（在文本的左边栏里）激活速查菜单，你可以快速设置enable/disable断点或者条件它的属性。
+
+ 3、CodeCompletion（代码完成）属性里的一个特殊的变量是，激活Ctrl-Alt-Space可以完成在或不在当前文件里的类名。如果类没有引入则import标志会自动创建。
+
+4、使用Ctrl-Shift-V快捷键可以将最近使用的剪贴板内容选择插入到文本。使用时系统会弹出一个含有剪贴内容的对话框，从中你可以选择你要粘贴的部分。
+
+5、利用CodeCompletion（代码完成）属性可以快速地在代码中完成各种不同地语句，方法是先键入一个类名地前几个字母然后再用Ctrl-Space完成全称。如果有多个选项，它们会列在速查列表里。
+
+6、用Ctrl-/与Ctrl-Shift-/来注释/反注释代码行与代码块。
+
+-/用单行注释标记（“//…”）来注释/反注释当前行或者选择地代码块。而Ctrl-Shift-/则可以用块注释标记（“”）把所选块包围起来。要反注释一个代码块就在块中任何一个地方按Ctrl-Shift-/即可。
+
+7、按Alt-Q（View|Context Info）可以不需要移动代码就能查看当前方法地声明。连续按两次会显示当前所编辑的类名。
+
+8、使用Refactor|Copy Class…可以创建一个所选择的类的“副本”。这一点很有用，比如，在你想要创建一个大部分内容都和已存在类相同的类时。
+
+9、在编辑器里Ctrl-D可以复制选择的块或者没有所选块是的当前行。
+
+10、Ctrl-W（选择字）在编辑器里的功能是先选择脱字符处的单词，然后选择源代码的扩展区域。举例来说，先选择一个方法名，然后是调用这个方法的表达式，然后是整个语句，然后包容块，等等。
+
+11、如果你不想让指示事件细节的“亮球”图标在编辑器上显示，通过按Alt-Enter组合键打开所有事件列表然后用鼠标点击它就可以把这个事件文本附件的亮球置成非活动状态。
+
+这样以后就不会有指示特殊事件的亮球出现了，但是你仍然可以用Alt-Enter快捷键使用它。
+
+12、在使用CodeCompletion时，可以用逗点（.）字符，逗号（，）分号（；），空格和其它字符输入弹出列表里的当前高亮部分。选择的名字会随着输入的字符自动输入到编辑器里。
+
+13、在任何工具窗口里使用Escape键都可以把焦点移到编辑器上。
+
+Shift-Escape不仅可以把焦点移到编辑器上而且还可以隐藏当前（或最后活动的）工具窗口。
+
+F12键把焦点从编辑器移到最近使用的工具窗口。
+
+14、在调试程序时查看任何表达式值的一个容易的方法就是在编辑器中选择文本（可以按几次Ctrl-W组合键更有效地执行这个操作）然后按Alt-F8。
+
+15、要打开编辑器脱字符处使用的类或者方法Java文档的浏览器，就按Shift-F1（右键菜单的External JavaDoc）。
+
+要使用这个功能须要把加入浏览器的路径，在“General”选项中设置（Options | IDE Settings），另外还要把创建的Java文档加入到工程中（File | Project Properties）。
+
+16、用Ctrl-F12（View | File Structure Popup）键你可以在当前编辑的文件中快速导航。
+
+这时它会显示当前类的成员列表。选中一个要导航的元素然后按Enter键或F4键。要轻松地定位到列表中的一个条目，只需键入它的名字即可。
+
+17、在代码中把光标置于标记符或者它的检查点上再按Alt-F7（右键菜单中的Find Usages…）会很快地查找到在整个工程中使用地某一个类、方法或者变量的位置。
+
+18、按Ctrl-N（Go to | Class…）再键入类的名字可以快速地在编辑器里打开任何一个类。从显示出来的下拉列表里选择类。
+
+同样的方法你可以通过使用Ctrl-Shift-N（Go to | File…）打开工程中的非Java文件。
+
+19、要导航代码中一些地方使用到的类、方法或者变量的声明，把光标放在查看项上再按Ctrl-B即可。也可以通过按Ctrl键的同时在查看点上单击鼠标键调转到声明处。
+
+20、把光标放到查看点上再按Ctrl-Alt-B可以导航到一个抽象方法的实现代码。
+
+21、要看一个所选择的类的继承层次，按Ctrl-H（Browse Type Hierarchy）即可。也可以激活编辑器中的继承关系视图查看当前编辑类的继承关系。
+
+22、使用Ctrl-Shift-F7（Search | Highlight Usages in File）可以快速高亮显示当前文件中某一变量的使用地方。按Escape清除高亮显示。
+
+23、用Alt-F3（Search | Incremental Search）在编辑器中实现快速查查找功能。
+
+在“Search for:”提示工具里输入字符，使用箭头键朝前和朝后搜索。按Escape退出。
+
+24、按Ctrl-J组合键来执行一些你记不起来的Live Template缩写。比如，键“it”然后按Ctrl-J看看有什么发生。
+
+25、Introduce Variable整合帮助你简化代码中复杂的声明。举个例子，在下面的代码片断里，在代码中选择一个表达式：
+
+然后按Ctrl-Alt-V（Refactor | Introduce Variable）就会出现下面的结果：
+
+ 26、Ctrl-Shift-J快捷键把两行合成一行并把不必要的空格去掉以匹配你的代码格式。
+
+27、Ctrl-Shift-Backspace（Go to | Last Edit Location）让你调转到代码中所做改变的最后一个地方。
+
+多按几次Ctrl-Shift-Backspace查看更深的修改历史。
+
+28、用Tools | Reformat Code…根据你的代码样式参考（查看Options | IDE Setting | Code Style）格式化代码。
+
+使用Tools | Optimize Imports…可以根据设置（查看Options | IDE Setting | Code Style | Imports）自动“优化”imports（清除无用的imports等）。
+
+29、使用IDEA的Live Templates | Live Templates让你在眨眼间创建许多典型代码。比如，在一个方法里键入
+
+再按Tab键看有什么事情发生了。
+
+ 用Tab键在不同的模板域内移动。查看Options | Live Templates获取更多的细节。
+
+30、要查看一个文件中修改的本地历史，激活右键菜单里的Local VCS | Show History…。也许你可以导航不同的文件版本，看看它们的不同之处再回滚到以前的任何一个版本吧。
+
+使用同样的右键菜单条目还可以看到一个目录里修改的历史。有了这个特性你就不会丢失任何代码了。
+
+31、如果要了解主菜单里每一个条目的用途，把鼠标指针移到菜单条目上再应用程序框架的底部的状态栏里就会显示它们的一些简短描述，也许会对你有帮助。
+
+32、要在编辑器里显示方法间的分隔线，打开Options | IDE Settings | Editor，选中“Show method separators”检查盒（checkbox）。
+
+33、用Alt-Up和Alt-Down键可以在编辑器里不同的方法之间快速移动。
+
+34、用F2/Shift-F2键在高亮显示的语法错误间跳转。
+
+用Ctrl-Alt-Down/Ctrl-Alt-Up快捷键则可以在编译器错误信息或者查找操作结果间跳转。
+
+35、通过按Ctrl-O（Code | Override Methods…）可以很容易地重载基本类地方法。
+
+要完成当前类implements的（或者抽象基本类的）接口的方法，就使用Ctrl-I（Code | Implement Methods…）。
+
+36、如果光标置于一个方法调用的括号间，按Ctrl-P会显示一个可用参数的列表。
+
+37、要快速查看编辑器脱字符处使用的类或方法的Java文档，按Ctrl-Q（在弹出菜单的Show Quick JavaDoc里）即可。
+
+38、像Ctrl-Q（Show Quick JavaDoc显示简洁Java文档），Ctrl-P（Show Parameter Info显示参数信息），Ctrl-B（Go to Declaration跳转到声明），Shift-F1（External JavaDoc外部Java文档）以及其它一些快捷键不仅可以在编辑器里使用，也可以应用在代码完成右键列表里。
+
+39、Ctrl-E（View | Recent Files）弹出最近访问的文件右键列表。选中文件按Enter键打开。
+
+40、在IDEA中可以很容易地对你的类，方法以及变量进行重命名并在所有使用到它们的地方自动更正。
+
+试一下，把编辑器脱字符置于任何一个变量名字上然后按Shift-F6（Refactor | Rename…）。在对话框里键入要显示地新名字再按Enter。你会浏览到使用这个变量地所有地方然后按“Do Refactor”按钮结束重命名操作。
+
+41、要在任何视图（Project View工程视图，Structure View结构视图或者其它视图）里快速
+
+选择当前编辑地部分（类，文件，方法或者字段），按Alt-F1（View | Select in…）。
+
+42、在“new”字符后实例化一个已知类型对象时也许你会用到SmartType代码完成这个特性。比如，键入再按Ctrl-Shift-Space：
+
+ 3、通过使用SmartType代码完成，在IDEA中创建接口的整个匿名implementation也是非常容易的，比如，对于一些listener（监听器），可以键入
+
+  Component component;
+
+  component.addMouseListener(
+
+    new <caret is here>
+
+  );
+
+然后再按Ctrl-Shift-Space看看有什么发生了。
+
+44、在你需要设置一个已知类型的表达式的值时用SmartType代码完成也很有帮助。比如，键入
+
+String s = (<caret is here>
+
+再按Ctrl-Shift-Space看看会有什么出现。
+
+45、在所有视图里都提供了速查功能：在树里只需键入字符就可以快速定位到一个条目。
+
+46、当你想用代码片断捕捉异常时，在编辑器里选中这个片断，按Ctrl-Alt-T（Code | Surround with…）然后选择“try/catch”。它会自动产生代码片断中抛出的所有异常的捕捉块。在Options | File Templates | Code tab中你还可以自己定制产生捕捉块的模板。
+
+用列表中的其它项可以包围别的一些结构。
+
+
+47、在使用代码完成时，用Tab键可以输入弹出列表里的高亮显示部分。
+
+不像用Enter键接受输入，这个选中的名字会覆盖掉脱字符右边名字的其它部分。这一点在用一个方法或者变量名替换另一个时特别有用。
+
+48、在声明一个变量时代码完成特性会给你显示一个建议名。比如，开始键入“private FileOutputStream”然后按Ctrl-Space
+
+intellij idea教程
+
+首先我要说一点，在IntelliJ IDEA里面“new Project”就相当于我们eclipse的“workspace”，而“new Module”才是创建一个工程，这是要注意的一点。
+
+
+ 这段摘自忆风的blog
+他说的是正确的，但是在我过去2年使用IDEA的开发经验中，我觉得IDEA是希望你一个“workspace”就有一个工程。而我在大学使用 ecipse的时候，多数人都是一个“workspace”里面有许多工程，不用的都是关闭状态，只有一个开启，这两个优秀的IDE在这点上是很有不同 的。
+
+    在IDEA里面“new Project”，它会自动建一个工程（如果你一直按标准程序创建的），名字和你这个工作空间是一样的（first），如果你在这个空间里多建一个自己的 工程（second），那么seconde的工程的根目录会和first的web,src,out在平级目录中。显得很乱，虽然这样也是正确的，所以，我 强烈建议还是一个空间中只有一个工程（也是IDEA标准建法）。
+
+    IDEA建好的工程中，你是看不到输出目录的，只能看到src,web，而WEB-INF下的classes,lib，都没有。但是你在磁盘中打开，你就能发现out中，有3个目录exploded,production,test,
+exploded：是你真正的web的输出目录，IDEA给你起了个别名，叫xxxxweb，这里面大家就熟悉了，什么都有了。
+production：所有的.class文件的输出都在这
+test：测试类和资源文件输出目录。
+
+    IDEA建工程的技巧
+1.首先是new project--->create project from scratch--->取个名字--->next--->next---->复选框web application勾上，当然你需要别的也勾上----->finish
+这个基本大家都会了
+
+2.现在你有标准目录了，配置tomcat，上面有个向下的箭头，点一下Edit Configurations,------>左上角的"+"标志 ------>TomcatServer--->local---->起个名字---->在Application Server----->configure---->选择tomcat路径---->干掉start browser的复选框---->干掉左下角的复选框，在选右下的fix----->apply-->ok
+
+3.去你的磁盘中，打开你新建的项目，找到E:\test\web\WEB-INF（假设项目叫test）,在WEB-INF中手动建两个文件夹，取名classes和lib.
+
+4.回到idea,右键点击你的空间---->Module Settings----第2竖栏选test--->右边选Paths----->Use module compile output path----->output path选你刚刚在磁盘中建的classes。
+
+5.还是第2竖栏---->web----->右边选Java EE Bulid Settings---->右边的 Create web module exploded directory路径选择你程序的web路径就行了（E:\test\web）
+下面Exclude from module content的复选框一点要干掉，不干掉你的web在idea里面就没了。
+
+6.添加lib,还是第2竖栏---->web----->右边选Dependencies--->add---->Module Library
+---->Attach Jar Directories--->目录选择之前手动建的lib。
